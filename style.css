@@ -1,0 +1,192 @@
+* {
+
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  /*Tirando toda margem (espaço entre as caixas vizinhas) e preenchimento interno (padding) que o navegador coloca no HTML*/
+}
+/*Inicio do botão para o tema*/
+:root{
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5); 
+  --surface-color: rgba(255,255,255,0.1);
+  --surface-color-hover: rgba(255,255,255,0.05);
+  --highlight-color: rgba(255,255,255,0.2);
+  --switch-bg-url: url(./assets/MoonStars.svg); 
+}
+
+.light{
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0 , 0 , 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1) ;
+  --switch-bg-url: url(./assets/Sun.svg); 
+}
+
+body{
+  /*background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  */
+  background: var(--bg-url) no-repeat top center/cover;
+  
+
+  /*Jogando a imagem no fundo da tela, e pedindo para ela ficar fixa sem repetição(no-repeat), vindo da parte superior da tela (top center), e sem espaço em branco (cover)*/
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color)
+  /*Pegando fonte da API do google.*/
+
+}
+
+#conteiner{
+  width: 360px; /*Largura de 360px*/
+  /* border: 1px solid red; Marcação da div #conteiner (Pai).*/
+  margin: 56px auto auto auto; /*Alinhando as margens no sentido horário. */
+  padding: 0 24px;
+
+}
+
+/*profile*/
+#profile {
+  text-align: center;
+  /*Alinhado textos direto da caixa pai, então fica tudo que estiver dentro dessa caixa, alinhado ao meio.*/ 
+
+  padding: 24px;
+
+}
+
+#profile img{
+  width: 112px; /* Largura da imagem dentro da div #profile */
+  /* display: block; Bloqueando a caixa para ela poder ser alinhada ao centro*/
+  /* margin: auto; Alinhando a imagem ao centro*/
+}
+
+#profile p{
+  font-weight: 500; /*Negrito*/
+  /*font-size: 16px; */
+  line-height: 24px; /*Altura da linha*/
+  margin-top: 8px;
+}
+
+/*switch*/
+#switch{
+  position: relative; /*posiçao do botao relativa ao absolute da caixa span, ou seja para ficar dentro da caixa*/
+
+  width: 64px; /*Deixando a caixa que está o botão do mesmo tamanho que a caixa que o botão vai percorrer ela*/
+
+  margin: 4px auto; /*Alinhando a caixa do botao para margem 4 em cima e em baixo e automatica nas laterais, e assim fica centralizado.*/
+
+
+}
+
+/*botao tema*/
+#switch button{
+  border-radius: 50px;
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  position: absolute; /*Sobrepondo a camada entre o botão e a caixa que ele vai "ligar e desligar"*/
+  top: 50%; /*fazendo a imagem abaixar 50% e ficar total alinhada dentro da caixa span*/
+  left: 0; /*posiçao na tela*/
+  z-index: 1; /*mudando o andar da camada*/
+  transform: translateY(-50%); /*Usado para alinhar a imagem -50 do top*/
+}
+
+/*mudando a posiçao botão de acordo com o tema*/
+.light #switch button{
+  right: 0; /*posiçao na tela*/
+  left: initial; /*voltando para maneira inicial quando tiver no tema claro*/
+}
+
+/*Caixa do botão do tema*/
+#switch span{
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /*import para o efeito pegar em outros navegadores*/
+  border-radius: 9999px;
+}
+
+
+
+/*Lista links*/
+
+ul {
+  list-style: none; /*Tirando a estilização padrão*/
+  display: flex; /*alinhando a caixa ao meio da Div*/ 
+  flex-direction: column; /*Alinhando uma item da lista abaixo do outro*/
+  gap: 16px; /*Espaço entre as caixas da lista*/
+
+  padding: 24px 0; /*Usado para dar espaço das caixas dos links*/
+}
+
+ul li a{
+  display: flex; /*Alinhando texto ao centro da caixa*/
+  justify-content: center; /*Alinhando texto ao centro da caixa*/
+  align-items: center; /*Alinhando texto ao centro da caixa*/
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);border-radius: 8px;
+  backdrop-filter: blur(4px); /*APLICANDO O BLUR NO FUNDO DA CAIXA DO LINK*/
+  -webkit-backdrop-filter: blur(4px); /*Importação para o blur rodar corretamente no navegador.*/
+
+  text-decoration: none; /*Tirando a linha debaixo do lindo*/
+  font-weight: 500;
+
+  transition: background 0.2s; /*Velocidade transição ao passar o mouse em cima das caixas da list*/
+}
+
+/*Cores ao pausar o mouse em cima das caixas da lista (Hover)*/
+ul li a:hover{    
+
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+
+}
+
+#social-links{
+  justify-content: center; /*Alinhando os icones ao meio da tela*/
+  display: flex; /*mesmo estando alinhados, o flex é chamado para podermos usar o GAP*/
+  /*gap: 16px (removido porque estava somando com o padding de 16px dos icones, e ficava um espaço maior do que o necessário)*/
+  padding: 24px 0  ; /*Preenchimento interno de dentro da caixa*/
+  font-size: 24px; /*tamanho dos icones*/
+}
+
+/*Alinhamento dos icones com o link, porque ele sai de formato*/
+#social-links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 50px;
+}
+
+#social-links a:hover{
+
+  background: var(--highlight-color);
+  transition: background 0.2s;
+
+}
+
+footer{
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+footer a{
+  text-decoration: none;
+}
+
